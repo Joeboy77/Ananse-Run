@@ -11,8 +11,8 @@
 - [x] Capsule scene: ground, three lanes, capsule, sky colour, fog
 - [x] Phone access script (`npm run dev:phone`)
 - [x] Git set up and pushed to GitHub
-- [ ] OWNER TASK 0: tools installed (Node, Git, VS Code, Chrome, Blender later)
-- [ ] Checkpoint 0: capsule scene seen on computer and phone
+- [x] OWNER TASK 0: tools installed (Node, Git, VS Code, Chrome, Blender later)
+- [x] Checkpoint 0: capsule scene seen on computer and phone
 
 ## Phase 1: Greybox runner
 
