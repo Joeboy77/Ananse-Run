@@ -105,6 +105,14 @@ Meshy turns your front image into a 3D model. Only `concept_front.png` is needed
 
 ---
 
+> **Automatic Parts 4–6:** if the model came from Meshy as one mesh (Resize 180 cm, Origin Bottom), one command does Parts 4, 5 and 6: it imports the model, cuts out and tucks the extra arms, exports `<name>_extra_arms.glb` and `<name>_mesh.fbx` (textures embedded), and saves `<name>.blend`:
+>
+> ```
+> /Applications/Blender.app/Contents/MacOS/Blender --background --python scripts/blender/prepare_character.py -- assets-src/characters/ananse/ananse_raw.glb ananse
+> ```
+>
+> Then go straight to Part 7.
+
 ## Part 4: Clean the model in Blender (Steps D and F)
 
 > **Meshy download shortcut:** if you downloaded with **Resize 180 cm** and **Origin Bottom**, the model is already one mesh, the right height, centred and facing forward. Only do steps 1, 2, 3 (to look at the triangle count) and 12 below, then go to Part 5.

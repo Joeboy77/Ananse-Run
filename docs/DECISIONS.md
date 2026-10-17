@@ -2,6 +2,11 @@
 
 Dated log of design and tech decisions. Newest at the top.
 
+## 2026-10-17 (Ananse model)
+
+- **Ananse base model:** Meshy Image to 3D (Meshy 7.1) from the ChatGPT concept, Meshy Pro private licence. 10,379 triangles, one mesh, 1.8 m, faces forward.
+- **Parts 4–6 of the owner guide are scripted** (`scripts/blender/prepare_character.py`, run with Blender in the background) after the manual extra-arms steps proved hard for a first-time Blender user. The script cuts the arms (|x| > 0.2 m, 1.1–1.36 m high), scales them to 80%, turns them 84° down and tucks them against the ribs.
+
 ## 2026-10-17 (Phase 3 preparation)
 
 - **Meshopt instead of Draco:** meshopt also compresses animations, decodes faster, and its decoder ships with drei.
