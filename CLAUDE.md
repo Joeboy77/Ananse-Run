@@ -9,7 +9,7 @@ A web-only 3D endless runner rooted in Ashanti folklore. Ananse the trickster ru
 
 ## Current phase
 
-**Phase 3: Ananse comes alive.** Engineering side ready; waiting on OWNER TASK 1 and 2 (Ananse model, rig, animations). See `docs/PROGRESS.md` and `docs/CHARACTER_BRIEF.md`.
+**Phase 3: Ananse comes alive, at TEST CHECKPOINT C1.** Real Ananse is in the game. See `docs/PROGRESS.md`.
 
 ## Docs
 

@@ -32,7 +32,8 @@ const findModels = async (dir) => {
     entries.map((entry) => {
       const path = join(dir, entry.name)
       if (entry.isDirectory()) return findModels(path)
-      return ['.glb', '.gltf', '.fbx'].includes(extname(entry.name).toLowerCase()) ? [path] : []
+      const isModel = ['.glb', '.gltf'].includes(extname(entry.name).toLowerCase())
+      return isModel && !/_raw\.(glb|gltf)$/i.test(entry.name) ? [path] : []
     }),
   )
   return files.flat()
@@ -68,10 +69,6 @@ const main = async () => {
   let problems = 0
   for (const file of files) {
     const rel = relative(sourceDir, file)
-    if (extname(file).toLowerCase() === '.fbx') {
-      console.log(`skip  ${rel}  (FBX: export it from Blender as .glb first)`)
-      continue
-    }
 
     const document = await io.read(file)
     const triangles = countTriangles(document)

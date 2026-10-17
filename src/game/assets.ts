@@ -13,7 +13,12 @@ export interface AssetManifest {
 }
 
 export const assets: AssetManifest = {
-  characters: {},
+  characters: {
+    ananse: {
+      model: '/assets/characters/ananse/ananse.glb',
+      extraArms: '/assets/characters/ananse/ananse_extra_arms.glb',
+    },
+  },
   props: {},
   textures: {},
   audio: {},

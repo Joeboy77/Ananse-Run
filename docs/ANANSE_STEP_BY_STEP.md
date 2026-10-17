@@ -207,6 +207,14 @@ Make a folder `assets-src/characters/ananse/mixamo/`. For each row: search for i
 
 ## Part 9: Put all the animations on one Ananse (Step J)
 
+> **Automatic Parts 9–10:** with the 11 FBX files in `assets-src/characters/<name>/mixamo/`, one command combines them onto one character, removes forward drift from moving clips (so "In Place" does not matter), puts the original Meshy colours back, and exports `<name>.glb`:
+>
+> ```
+> /Applications/Blender.app/Contents/MacOS/Blender --background --python scripts/blender/combine_animations.py -- assets-src/characters/ananse/mixamo assets-src/characters/ananse/ananse_raw.glb assets-src/characters/ananse/ananse.glb
+> ```
+>
+> Then run `npm run assets` and go to Part 11.
+
 If this part gets confusing, tell Claude Code "give me the Blender script for Step J" and it will do the whole part automatically.
 
 1. Start a new Blender file (**File → New → General**), select all (**A**) and delete (**X**).

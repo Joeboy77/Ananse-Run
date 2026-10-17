@@ -48,9 +48,10 @@
 - [x] Extra arms attached to the chest bone, tucked while running, reaching out during Web Swing
 - [x] Preview any exported model with `?debug=1&model=...&arms=...`
 - [x] Re-export guide for the owner (`docs/ART_GUIDE.md`)
-- [ ] OWNER TASK 1: Ananse concept art and model (Steps B to F) — in progress
-- [ ] OWNER TASK 2: rigging, animations and export (Steps G to M)
-- [ ] Ananse added to the asset manifest; collision box checked against the model
+- [x] OWNER TASK 1: Ananse concept art (ChatGPT) and model (Meshy Pro)
+- [x] OWNER TASK 2: Mixamo rig and 11 animations
+- [x] Blender scripts: `prepare_character.py` (extra arms + Mixamo FBX), `combine_animations.py` (one GLB, in-place, textures)
+- [x] Ananse added to the asset manifest (931 KB, 10,379 triangles, 11 clips)
 - [ ] Toon outline decision (after seeing the real model)
 - [ ] TEST CHECKPOINT C1
 

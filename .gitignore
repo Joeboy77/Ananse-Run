@@ -15,3 +15,5 @@ assets-src/**/*.blend1
 ~$*
 .gstack/
 public/assets/_dev
+assets-src/**/*_mesh.fbx
+assets-src/**/*.blend
