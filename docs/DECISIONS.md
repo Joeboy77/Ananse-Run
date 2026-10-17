@@ -2,6 +2,17 @@
 
 Dated log of design and tech decisions. Newest at the top.
 
+## 2026-10-17 (Phase 3 preparation)
+
+- **Meshopt instead of Draco:** meshopt also compresses animations, decodes faster, and its decoder ships with drei.
+- **WebP textures instead of KTX2 for now:** KTX2 needs the separate `toktx` program installed. Our textures are tiny (one 1024 px set per character), so WebP is fine. Revisit in Phase 8 if GPU memory is tight.
+- **New dev dependencies for `npm run assets`:** `@gltf-transform/core`, `@gltf-transform/functions` and `@gltf-transform/extensions` (glTF processing), `meshoptimizer` (mesh compression), `sharp` (texture resizing and WebP).
+- **Models are scaled to 1.8 units automatically** and turned to face down the track, so small export scale mistakes do not break the game.
+- **Toon shading:** every material is converted to a three-step cartoon material. An outline is decided after seeing the real Ananse.
+- **Missing animations fall back** to the closest clip (for example swing → jump → run), so a partial export still plays.
+- **The capsule stays as a fallback** if the model is missing or fails to load.
+- **Pipeline tested with the Khronos CesiumMan sample (CC-BY 4.0)** kept outside the repo; nothing from it is committed.
+
 ## 2026-10-17 (Phase 2)
 
 - **"Activate stored power-up" = shield charms.** The brief lists a double-tap / E control but no stored item. Charms are bought in the shop (300 gold) and give a Gye Nyame Shield on demand, like hoverboards in Subway Surfers.

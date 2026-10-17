@@ -89,6 +89,26 @@ Sculpting, rendering and the Blender game engine are not needed.
 
 Repeat A to M later for Ntikuma, Aso and Osebo the leopard. The leopard is not humanoid, so Mixamo cannot rig it; find a licensed animated big cat model instead.
 
+## Exporting, checking and re-exporting a character
+
+Use this every time you change Ananse (or any character) in Blender.
+
+1. **Export** from Blender: File → Export → glTF 2.0, format **GLB**. Tick: Selected Objects, Mesh, Armature, and under Animation, export all actions. Save as `assets-src/characters/ananse/ananse.glb` (overwrite the old one). The extra arms go in the same folder as `ananse_extra_arms.glb`.
+2. **Optimise and check** in a terminal in the project folder:
+   ```
+   npm run assets
+   ```
+   It shrinks the file into `public/assets/characters/ananse/` and prints a report: file size, triangle count, and the animation names. Fix anything it lists as **over budget** or **missing animations**, then export again.
+3. **Preview in the game** before telling Claude Code:
+   ```
+   npm run dev
+   ```
+   Open http://localhost:5173/?debug=1&model=/assets/characters/ananse/ananse.glb&arms=/assets/characters/ananse/ananse_extra_arms.glb
+   Play a run and watch each animation: run, jump, slide, lane switches, stumble, crash, and Web Swing (the extra arms should reach out).
+4. **Hand over:** tell Claude Code "Ananse is ready". It adds him to the asset list so he replaces the capsule for everyone, without the special address.
+
+If the preview shows the capsule instead of Ananse, the file failed to load: check the browser console (F12) and send Claude Code the message.
+
 ## Props for Kejetia Market (Phase 4)
 
 Claude Code produces a full prop list with triangle budgets. Core set:

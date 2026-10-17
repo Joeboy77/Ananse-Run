@@ -37,11 +37,21 @@
 - [x] Shop: upgrades, Sankofa tokens, shield charms, characters and outfits with equip
 - [x] Local saving to IndexedDB after every run, purchase and claim
 - [x] Unit tests (122 total)
-- [ ] TEST CHECKPOINT B (waiting for owner feedback)
+- [x] TEST CHECKPOINT B (approved 2026-10-17)
 - [ ] Story pages unlocked by missions (moved to Phase 5 with the Collection screen)
 
 ## Phase 3: Ananse comes alive
 
+- [x] Character brief agreed (`docs/CHARACTER_BRIEF.md`)
+- [x] `npm run assets`: meshopt compression, WebP textures at 1024 px, triangle and animation report
+- [x] Character loader: toon shading, auto height, animation crossfades, run speed scaling, capsule fallback
+- [x] Extra arms attached to the chest bone, tucked while running, reaching out during Web Swing
+- [x] Preview any exported model with `?debug=1&model=...&arms=...`
+- [x] Re-export guide for the owner (`docs/ART_GUIDE.md`)
+- [ ] OWNER TASK 1: Ananse concept art and model (Steps B to F) — in progress
+- [ ] OWNER TASK 2: rigging, animations and export (Steps G to M)
+- [ ] Ananse added to the asset manifest; collision box checked against the model
+- [ ] Toon outline decision (after seeing the real model)
 - [ ] TEST CHECKPOINT C1
 
 ## Phase 4: Kejetia Market

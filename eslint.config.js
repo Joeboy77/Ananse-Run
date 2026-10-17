@@ -8,6 +8,11 @@ import prettier from 'eslint-config-prettier'
 export default tseslint.config(
   { ignores: ['dist', 'dev-dist', 'node_modules', 'public', 'assets-src'] },
   {
+    files: ['scripts/**/*.mjs'],
+    extends: [js.configs.recommended, prettier],
+    languageOptions: { ecmaVersion: 2023, sourceType: 'module', globals: globals.node },
+  },
+  {
     files: ['**/*.{ts,tsx}'],
     extends: [
       js.configs.recommended,
