@@ -16,30 +16,53 @@ Time guide: Parts 1–2 take an afternoon, Parts 3–5 a day, Parts 6–10 a day
    - Switch between Object mode and Edit mode (Tab).
    - File → Import and File → Export.
    - Play an animation on the timeline (Space).
-4. Create a free **Adobe account** (for Mixamo, Part 7) and an account on **meshy.ai** (Part 3).
+4. Create a free **Adobe ID** for Mixamo (Part 7): on **mixamo.com** click **Log In → Create an account**, enter your email, a password and date of birth, then confirm the email Adobe sends. Mixamo is free; you do **not** need a paid Creative Cloud plan. If it ever asks for payment, stop and tell Claude Code.
+5. Create an account on **meshy.ai** (Part 3).
 
 **Check:** you can import any model, rotate around it and export it again.
 
 ---
 
-## Part 2: Concept art (Step B)
+## Part 2: Concept art (Step B), about 20 minutes
 
-You need **one front image and one side image** of Ananse standing with arms straight out (T-pose), on a plain white background. The character brief is in `docs/CHARACTER_BRIEF.md`.
+We use **ChatGPT** to draw the concept. Its terms give you ownership of the images you create, so they can be used in the game.
 
-**Option A: a local illustrator (best quality, clear ownership).** Send them the character brief and ask for a "front and side turnaround, T-pose, plain background, stylised cartoon 3D look like Subway Surfers". Get written permission to use the art in the game.
+**Draw the front view**
 
-**Option B: an AI image tool (fastest).**
+1. Open **chatgpt.com** in Chrome and sign in (a free account works; image limits are lower on free).
+2. Click **New chat**.
+3. Copy this whole prompt, paste it into the message box, and press Enter:
 
-1. Use a tool whose terms allow commercial use (check the pricing or terms page).
-2. Use this prompt:
-   > Stylised 3D cartoon character turnaround, front view and side view, T-pose, arms straight out, plain white background, full body head to feet. Wiry Ghanaian man in his 40s, warm dark-brown skin, sly half-grin, clever eyes, slightly oversized head, hands and feet. Kente-inspired cloth wrap in gold, green and red over one shoulder with a subtle spider-web pattern, simple sandals, small leather pouch at the hip, bead headband. Subway Surfers style, bright colours, chunky shapes, clean lines.
-3. Generate several, pick the best, and crop out a clean **front view** image (just the front, whole body visible, nothing cut off).
+   > Create one image: a full-body FRONT view of a stylised 3D cartoon game character standing in a T-pose (arms straight out to the sides at shoulder height, palms down, legs slightly apart). Plain pure white background, the whole body visible from the top of the head to the soles of the feet with empty space around it, no shadow, no text, no other objects. The character is Ananse: a wiry Ghanaian man in his 40s with warm dark-brown skin, a sly half-grin and clever eyes. Slightly oversized head, hands and feet, like a Subway Surfers character. He wears a kente-inspired cloth wrap in gold, green and red draped over one shoulder with a faint spider-web pattern woven into the cloth, simple brown sandals, a small leather pouch at his hip, and a beaded headband. Exactly two arms. Bright colours, clean chunky shapes, soft even lighting.
 
-Do **not** draw four arms. The extra arms are made separately in Part 5.
+4. Wait for the image (up to a minute).
+5. Check it against this list. **All** must be true:
+   - The whole body is visible: head, both hands, both feet, nothing cut off at the edges.
+   - Arms are straight out to the sides, roughly level.
+   - Exactly two arms, five fingers on each hand, fingers not melted together.
+   - The background is plain white with nothing else on it.
+   - He is facing straight at you.
+6. If anything fails, type what is wrong and press Enter, for example: _"Same character, but show the full feet and make the arms straight out level with the shoulders."_ Repeat until the list passes.
+7. Click the image to open it, then click the **download** icon (arrow pointing down). It goes to your **Downloads** folder.
 
-**Save** the images as `assets-src/characters/ananse/concept_front.png` and `concept_side.png`.
+**Draw the side view**
 
-**Check:** the front image shows the whole body, arms out, on a plain background.
+8. In the **same chat**, paste this and press Enter:
+
+   > Now draw the exact same character from the side (his left side facing the viewer), same T-pose, same clothes, colours and proportions, same plain white background, whole body visible from head to feet, no shadow, no text.
+
+9. Check: same person and clothes as the front image, whole body visible. Fix it the same way as step 6 if needed.
+10. Download it the same way.
+
+**Put the images in the project**
+
+11. In VS Code, in the file list on the left, open `assets-src` → `characters`, right-click the **`ananse`** folder → **Reveal in Finder**. A Finder window opens on that folder.
+12. Open a second Finder window (**Cmd+N**) and go to **Downloads**.
+13. Drag the front image into the `ananse` folder. Click its name once, press **Enter**, type `concept_front` (keep the ending such as `.png`), press **Enter**.
+14. Do the same for the side image and name it `concept_side`.
+15. If either file ends in **`.webp`**: double-click it to open it in **Preview** → **File → Export** → Format: **PNG** → Save. Then delete the `.webp` copy.
+
+**Check:** the `ananse` folder contains `concept_front.png` and `concept_side.png`.
 
 ---
 
