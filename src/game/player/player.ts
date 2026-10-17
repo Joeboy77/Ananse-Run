@@ -1,11 +1,15 @@
 import { tuning } from '@/config/tuning'
 import { clampLane, laneToX, type LaneIndex } from '@/game/track/lanes'
-import { easeOutCubic, lerp } from '@/game/core/math'
+import { damp, easeOutCubic, lerp } from '@/game/core/math'
 import type { PlayerAction } from './actions'
 
-const { height: jumpHeight, duration: jumpDuration, fastDropSpeed } = tuning.jump
-const gravity = (8 * jumpHeight) / jumpDuration ** 2
-const jumpVelocity = (4 * jumpHeight) / jumpDuration
+const jumpPhysics = (height: number, duration: number) => ({
+  velocity: (4 * height) / duration,
+  gravity: (8 * height) / duration ** 2,
+})
+
+const normalJump = jumpPhysics(tuning.jump.height, tuning.jump.duration)
+const springJump = jumpPhysics(tuning.powerUps.springJumpHeight, tuning.powerUps.springJumpDuration)
 const groundSnap = 0.001
 
 export class Player {
@@ -16,15 +20,17 @@ export class Player {
   vy = 0
   grounded = true
   sliding = false
+  flying = false
+  spring = false
   prevX = 0
   prevY = 0
   prevHeight: number = tuning.player.height
   support = 0
-
-  private switchFrom = 0
-  private switchProgress = 1
-  private slideTimer = 0
-  private slideOnLand = false
+  gravity = normalJump.gravity
+  switchFrom = 0
+  switchProgress = 1
+  slideTimer = 0
+  slideOnLand = false
 
   get height(): number {
     return this.sliding ? tuning.slide.height : tuning.player.height
@@ -42,10 +48,13 @@ export class Player {
     this.vy = 0
     this.grounded = true
     this.sliding = false
+    this.flying = false
+    this.spring = false
     this.prevX = this.x
     this.prevY = 0
     this.prevHeight = tuning.player.height
     this.support = 0
+    this.gravity = normalJump.gravity
     this.switchFrom = this.x
     this.switchProgress = 1
     this.slideTimer = 0
@@ -60,21 +69,35 @@ export class Player {
       case 'right':
         this.moveToLane(this.lane + 1)
         return true
-      case 'jump':
+      case 'jump': {
+        if (this.flying) return true
         if (!this.grounded) return false
+        const physics = this.spring ? springJump : normalJump
         this.sliding = false
         this.slideTimer = 0
-        this.vy = jumpVelocity
+        this.vy = physics.velocity
+        this.gravity = physics.gravity
         this.grounded = false
         return true
+      }
       case 'slide':
+        if (this.flying) return true
         if (this.grounded) this.startSlide()
         else {
-          this.vy = Math.min(this.vy, -fastDropSpeed)
+          this.vy = Math.min(this.vy, -tuning.jump.fastDropSpeed)
           this.slideOnLand = true
         }
         return true
     }
+  }
+
+  setFlying(flying: boolean): void {
+    this.flying = flying
+    this.sliding = false
+    this.slideOnLand = false
+    this.vy = 0
+    this.gravity = normalJump.gravity
+    if (flying) this.grounded = false
   }
 
   bounceBack(): void {
@@ -92,13 +115,22 @@ export class Player {
       this.x = lerp(this.switchFrom, laneToX(this.lane), easeOutCubic(this.switchProgress))
     }
 
-    if (this.grounded && support < this.y - groundSnap) this.grounded = false
+    if (this.flying) {
+      this.y = damp(this.y, tuning.powerUps.swingHeight, tuning.powerUps.swingLambda, dt)
+      return
+    }
+
+    if (this.grounded && support < this.y - groundSnap) {
+      this.grounded = false
+      this.vy = 0
+      this.gravity = normalJump.gravity
+    }
 
     if (this.grounded) {
       this.y = support
     } else {
-      this.y += this.vy * dt - 0.5 * gravity * dt * dt
-      this.vy -= gravity * dt
+      this.y += this.vy * dt - 0.5 * this.gravity * dt * dt
+      this.vy -= this.gravity * dt
       if (this.y <= support) this.land(support)
     }
 
@@ -112,6 +144,7 @@ export class Player {
     this.y = support
     this.vy = 0
     this.grounded = true
+    this.gravity = normalJump.gravity
     if (this.slideOnLand) {
       this.slideOnLand = false
       this.startSlide()

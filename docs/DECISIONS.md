@@ -2,6 +2,22 @@
 
 Dated log of design and tech decisions. Newest at the top.
 
+## 2026-10-17 (Phase 2)
+
+- **"Activate stored power-up" = shield charms.** The brief lists a double-tap / E control but no stored item. Charms are bought in the shop (300 gold) and give a Gye Nyame Shield on demand, like hoverboards in Subway Surfers.
+- **Shield is not upgradeable:** it lasts until hit, so "last longer" does not apply. The other four timed power-ups have 5 upgrade levels each (250 to 5,000 gold).
+- **Sankofa:** the game records a snapshot of the whole run every 0.25 s; continuing restores the one from 2 s before the crash and gives 1 s of protection. New players start with 1 token. The offer lasts 5 s; rewards are applied once the run truly ends.
+- **Web Swing:** lifts Ananse to 5.5 units, lays a gold trail that switches lanes every 10 coins, and clears obstacles near the landing spot when it ends, plus 1 s of protection.
+- **Missions:** nine templates (per-run and lifetime). Each set has three; targets grow 50% per set. Each mission pays 100 + 50 × set gold. Finishing a set adds +1 multiplier (max x30) and a Sankofa token.
+- **Daily reward:** 50, 75, 100, 150, 200, 250, 400 gold; every 7th day also gives a Sankofa token. Missing days halves the streak instead of resetting it.
+- **Gold weights:** six weights, at most one spawn chance per power-up slot (6%), only ones not yet found. A full set pays 1,000 gold. Their proverbs are in `src/content/culture.ts`, all `verified: false`; the UI only says "awaiting cultural review" until the owner verifies them.
+- **Difficulty:** levels start at 0, 20, 60, 120 and 180 s. Chunks at the current level are 3× as likely, one level below 2×.
+- **Oncoming trotros** start moving 60 units away at +8 units/s; the path checker treats their lane as blocked 26 units before their start. **Okadas** cross at 7 units/s from 34 units away, are 1.6 tall, and can be jumped.
+- **Roof step-up tolerance 0.4:** landing on a roof or crate counts if your feet are within 0.4 of its top, so ramps work at top speed.
+- **Chaser placement:** shown low at the bottom corner, on the side away from Ananse, so it never blocks the track.
+- **Story pages** moved to Phase 5 with the Collection screen.
+- **Saving:** IndexedDB with no extra library (about 40 lines). Writes are queued so the last save wins. Nothing is written until the saved profile has loaded.
+
 ## 2026-10-17 (Phase 1)
 
 - **Simulation is plain TypeScript** (`src/game/loop/simulation.ts`), stepped at 60 Hz by a fixed stepper. React components only read its state each frame and write to Three.js objects. Fully unit tested without a browser.

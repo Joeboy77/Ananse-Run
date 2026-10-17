@@ -21,7 +21,7 @@ Simulating a phone: in Chrome press F12 (Cmd+Option+I on Mac), click the device 
 
 ## How to give feedback
 
-After each test, add an entry to `docs/FEEDBACK.md` with this template, or paste the same text into Claude Code. Short is fine; specific is what matters.
+After each test, write your feedback in the chat with Claude Code. It copies each round into `docs/FEEDBACK.md`. This template helps, but short is fine; specific is what matters.
 
 ```
 ## Checkpoint A – 2026-10-20 – Tecno Spark 20, Chrome
@@ -76,6 +76,10 @@ Play at least 10 runs on the phone and 5 on the computer. Rate each line 1 to 5 
 - FPS (with `?debug=1`) stays near 60 on my phone. Note the lowest number.
 
 ## Checkpoint B: gameplay (after Phase 2)
+
+Colour key additions: **orange** block = oncoming trotro, **purple** = okada crossing (jumpable), **light green wedge** = ramp. Floating coloured gems are power-ups (white Web Swing, blue Shield, red Magnet, purple Drum, green Spring); brown cones are gold weights. The orange low block at the bottom corner is the leopard.
+
+Handy for testing: `?seed=123` replays the same layout. To reset your saved progress, open Chrome DevTools → Application → IndexedDB → `ananse-run` → delete.
 
 - Each power-up appears, works, shows its timer and ends correctly. Test each at least twice.
 - The chaser appears on a stumble, and a second stumble ends the run.

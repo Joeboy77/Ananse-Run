@@ -1,0 +1,13 @@
+.track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.15);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-gold);
+  transition: width var(--duration-fast) linear;
+}

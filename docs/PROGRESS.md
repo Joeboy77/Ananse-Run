@@ -23,18 +23,22 @@
 - [x] Instanced gold dust and counter
 - [x] Crash and stumble, speed ramp, distance score
 - [x] Instant restart, basic start and game-over overlays
-- [ ] TEST CHECKPOINT A (waiting for owner feedback)
+- [x] TEST CHECKPOINT A (approved 2026-10-17)
 
 ## Phase 2: Gameplay systems
 
-- [ ] Power-ups
-- [ ] Chaser placeholder
-- [ ] Moving obstacles, ramps, rooftops
-- [ ] Difficulty curve
-- [ ] Missions, multiplier, gold weights, daily reward
-- [ ] Shop logic and IndexedDB save
-- [ ] Unit tests
-- [ ] TEST CHECKPOINT B
+- [x] Power-ups: Web Swing, Gye Nyame Shield, Kente Magnet, Talking Drum, Spring Web, with HUD timers
+- [x] Sankofa continue: 2-second rewind with a 5-second offer countdown
+- [x] Shield charms: stored shields activated by double-tap or E
+- [x] Chaser placeholder: visible at run start and after a stumble, drops back after clean running
+- [x] Moving obstacles (oncoming trotro, crossing okada), ramps, rooftop running
+- [x] Difficulty curve: five levels over the first three minutes, 19 chunks, no repeats of the last four
+- [x] Missions (three per set), multiplier levels, gold weights, daily reward with gentle streak reset
+- [x] Shop: upgrades, Sankofa tokens, shield charms, characters and outfits with equip
+- [x] Local saving to IndexedDB after every run, purchase and claim
+- [x] Unit tests (122 total)
+- [ ] TEST CHECKPOINT B (waiting for owner feedback)
+- [ ] Story pages unlocked by missions (moved to Phase 5 with the Collection screen)
 
 ## Phase 3: Ananse comes alive
 

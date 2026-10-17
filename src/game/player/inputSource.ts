@@ -2,7 +2,10 @@ import { tuning } from '@/config/tuning'
 import type { PlayerAction } from './actions'
 import { classifySwipe } from './swipe'
 
-export type InputCommand = PlayerAction | 'confirm'
+export type InputCommand = PlayerAction | 'confirm' | 'activate'
+
+const DOUBLE_TAP_MS = 300
+const TAP_MAX_MS = 250
 
 const keyMap: Record<string, InputCommand> = {
   ArrowLeft: 'left',
@@ -15,6 +18,7 @@ const keyMap: Record<string, InputCommand> = {
   ArrowDown: 'slide',
   KeyS: 'slide',
   Enter: 'confirm',
+  KeyE: 'activate',
 }
 
 export const attachInput = (target: Window, onCommand: (command: InputCommand) => void): (() => void) => {
@@ -22,6 +26,8 @@ export const attachInput = (target: Window, onCommand: (command: InputCommand) =
   let startX = 0
   let startY = 0
   let fired = false
+  let downAt = 0
+  let lastTapAt = -Infinity
 
   const onKeyDown = (event: KeyboardEvent) => {
     if (event.repeat) return
@@ -38,6 +44,7 @@ export const attachInput = (target: Window, onCommand: (command: InputCommand) =
     startX = event.clientX
     startY = event.clientY
     fired = false
+    downAt = event.timeStamp
   }
 
   const onPointerMove = (event: PointerEvent) => {
@@ -53,7 +60,15 @@ export const attachInput = (target: Window, onCommand: (command: InputCommand) =
   }
 
   const onPointerEnd = (event: PointerEvent) => {
-    if (event.pointerId === pointerId) pointerId = null
+    if (event.pointerId !== pointerId) return
+    pointerId = null
+    if (fired || event.type === 'pointercancel' || event.timeStamp - downAt > TAP_MAX_MS) return
+    if (event.timeStamp - lastTapAt < DOUBLE_TAP_MS) {
+      lastTapAt = -Infinity
+      onCommand('activate')
+    } else {
+      lastTapAt = event.timeStamp
+    }
   }
 
   target.addEventListener('keydown', onKeyDown)

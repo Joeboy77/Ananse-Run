@@ -17,3 +17,14 @@ describe('rng', () => {
     }
   })
 })
+
+describe('rng state', () => {
+  it('replays from a saved state', () => {
+    const rng = createRng(5)
+    rng.next()
+    const saved = rng.getState()
+    const a = [rng.next(), rng.next()]
+    rng.setState(saved)
+    expect([rng.next(), rng.next()]).toEqual(a)
+  })
+})

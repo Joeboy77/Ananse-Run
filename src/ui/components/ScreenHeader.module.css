@@ -1,0 +1,23 @@
+.header {
+  display: grid;
+  grid-template-columns: var(--tap-min) 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: calc(env(safe-area-inset-top) + var(--space-3)) var(--space-4) var(--space-3);
+}
+
+.back {
+  width: var(--tap-min);
+  height: var(--tap-min);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: rgb(255 255 255 / 0.12);
+  color: var(--color-paper);
+  font: 700 30px/1 var(--font-display);
+  cursor: pointer;
+}
+
+.title {
+  margin: 0;
+  font: 900 24px/1 var(--font-display);
+}

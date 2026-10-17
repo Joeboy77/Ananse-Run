@@ -9,7 +9,7 @@ A web-only 3D endless runner rooted in Ashanti folklore. Ananse the trickster ru
 
 ## Current phase
 
-**Phase 1: Greybox runner, at TEST CHECKPOINT A.** Waiting for owner feedback before Phase 2. See `docs/PROGRESS.md`.
+**Phase 2: Gameplay systems, at TEST CHECKPOINT B.** Waiting for owner feedback before Phase 3. See `docs/PROGRESS.md`.
 
 ## Docs
 
@@ -61,6 +61,7 @@ Product owner, animator and tester. Computing student with solid React, Next.js,
 - Never leave the game broken at the end of a session.
 - Placeholders first: boxes, capsules, simple colours until real art arrives. Asset paths live only in `src/game/assets.ts`, so art swaps need no code changes.
 - Every gameplay number lives in `src/config/tuning.ts`.
+- The owner gives feedback in chat. Copy each round into `docs/FEEDBACK.md` yourself.
 - Stop at every TEST CHECKPOINT. Give the exact commands, URL, what to test and the checklist from `docs/TESTING.md`. Then wait. Do not start the next phase until feedback is processed.
 - Process feedback: read `docs/FEEDBACK.md`, group into must-fix, should-fix and ideas, fix the must-fix items, confirm what changed, log design changes in `docs/DECISIONS.md`.
 - When an OWNER TASK is due, explain why, give the steps from `docs/ART_GUIDE.md` adapted to the current state, and say exactly where to put files and what to say when done.

@@ -75,3 +75,33 @@ describe('player', () => {
     expect(player.grounded).toBe(false)
   })
 })
+
+describe('player power-ups', () => {
+  it('jumps much higher with Spring Web', () => {
+    const player = new Player()
+    player.reset()
+    player.spring = true
+    player.tryAction('jump')
+    let peak = 0
+    for (let i = 0; i < 120; i++) {
+      player.step(dt, 0)
+      peak = Math.max(peak, player.y)
+    }
+    expect(peak).toBeCloseTo(tuning.powerUps.springJumpHeight, 1)
+    expect(player.grounded).toBe(true)
+  })
+
+  it('rises to swing height while flying and ignores jump and slide', () => {
+    const player = new Player()
+    player.reset()
+    player.setFlying(true)
+    for (let i = 0; i < 120; i++) player.step(dt, 0)
+    expect(player.y).toBeCloseTo(tuning.powerUps.swingHeight, 1)
+    expect(player.tryAction('slide')).toBe(true)
+    expect(player.sliding).toBe(false)
+    player.setFlying(false)
+    for (let i = 0; i < 120; i++) player.step(dt, 0)
+    expect(player.grounded).toBe(true)
+    expect(player.y).toBe(0)
+  })
+})

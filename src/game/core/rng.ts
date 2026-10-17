@@ -1,6 +1,8 @@
 export interface Rng {
   next(): number
   int(maxExclusive: number): number
+  getState(): number
+  setState(state: number): void
 }
 
 export const createRng = (seed: number): Rng => {
@@ -15,6 +17,10 @@ export const createRng = (seed: number): Rng => {
   return {
     next,
     int: (maxExclusive) => Math.floor(next() * maxExclusive),
+    getState: () => state,
+    setState: (value) => {
+      state = value >>> 0
+    },
   }
 }
 

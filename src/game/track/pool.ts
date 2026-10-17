@@ -31,6 +31,11 @@ export class Pool<T extends { active: boolean }> {
     }
   }
 
+  rebuildFree(): void {
+    this.free.length = 0
+    for (let i = this.items.length - 1; i >= 0; i--) if (!this.items[i]!.active) this.free.push(i)
+  }
+
   get activeCount(): number {
     return this.items.length - this.free.length
   }

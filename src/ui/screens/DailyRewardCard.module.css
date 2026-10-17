@@ -1,0 +1,35 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: min(360px, 100%);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: rgb(27 18 9 / 0.75);
+  border: 2px solid var(--color-gold);
+  text-align: left;
+}
+
+.title {
+  margin-bottom: var(--space-2);
+  font: 700 13px/1 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.extra {
+  font: 700 14px/1 var(--font-body);
+}
+
+.claim {
+  min-height: var(--tap-min);
+  padding: 0 var(--space-6);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-gold);
+  color: var(--color-ink);
+  font: 800 16px/1 var(--font-display);
+  cursor: pointer;
+}

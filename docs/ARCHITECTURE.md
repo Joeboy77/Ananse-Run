@@ -38,7 +38,9 @@ ananse-run/
       assets.ts      asset manifest (the only place asset paths live)
       runtime.ts     the single running game: simulation + stepper + commands
       core/          seeded rng, math helpers
-      loop/          fixed-timestep update, speed curve, simulation, run phases
+      runConfig.ts   turns the saved profile into run settings (durations, multiplier)
+      loop/          fixed-timestep update, speed curve, simulation, run phases, Sankofa snapshots
+      progression/   profile, missions, daily reward, shop, run rewards (pure functions)
       track/         lanes, chunk definitions, generator, object pools
       player/        controller, input buffer, animation state
       obstacles/     types, collision boxes

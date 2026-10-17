@@ -27,6 +27,20 @@ describe('chunk validation', () => {
     expect(hasClearPath(wall)).toBe(false)
   })
 
+  it('treats an oncoming trotro as blocking its lane well before its start', () => {
+    const chunk: ChunkDef = {
+      id: 'oncoming-wall',
+      difficulty: 0,
+      obstacles: [
+        { kind: 'oncoming', lane: 0, at: 30 },
+        { kind: 'full', lane: 1, at: 10, length: 20 },
+        { kind: 'full', lane: 2, at: 10, length: 20 },
+      ],
+      gold: [],
+    }
+    expect(hasClearPath(chunk)).toBe(false)
+  })
+
   it('rejects a chunk where the only gap cannot be reached in time', () => {
     const trap: ChunkDef = {
       id: 'trap',
