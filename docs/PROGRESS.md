@@ -16,14 +16,14 @@
 
 ## Phase 1: Greybox runner
 
-- [ ] Fixed-timestep loop, run state machine, floating origin
-- [ ] Player: three lanes, lane switch, jump, slide, input buffering, swipe and keyboard
-- [ ] Follow camera: lag, tilt, speed FOV
-- [ ] Chunk generator: 8 to 10 greybox chunks, pooling, guaranteed path
-- [ ] Instanced gold dust and counter
-- [ ] Crash and stumble, speed ramp, distance score
-- [ ] Instant restart, basic start and game-over overlays
-- [ ] TEST CHECKPOINT A
+- [x] Fixed-timestep loop, run state machine, floating origin
+- [x] Player: three lanes, lane switch, jump, slide, input buffering, swipe and keyboard
+- [x] Follow camera: lag, tilt, speed FOV, shake on stumble and crash
+- [x] Chunk generator: 10 greybox chunks, pooling, guaranteed path (validated by tests)
+- [x] Instanced gold dust and counter
+- [x] Crash and stumble, speed ramp, distance score
+- [x] Instant restart, basic start and game-over overlays
+- [ ] TEST CHECKPOINT A (waiting for owner feedback)
 
 ## Phase 2: Gameplay systems
 

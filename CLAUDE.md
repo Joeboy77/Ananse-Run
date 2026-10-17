@@ -9,7 +9,7 @@ A web-only 3D endless runner rooted in Ashanti folklore. Ananse the trickster ru
 
 ## Current phase
 
-**Phase 0: Project setup.** See `docs/PROGRESS.md`.
+**Phase 1: Greybox runner, at TEST CHECKPOINT A.** Waiting for owner feedback before Phase 2. See `docs/PROGRESS.md`.
 
 ## Docs
 

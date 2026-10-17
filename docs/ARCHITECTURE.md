@@ -36,7 +36,9 @@ ananse-run/
     content/         culture.ts, missions.ts, characters.ts
     game/
       assets.ts      asset manifest (the only place asset paths live)
-      loop/          fixed-timestep update, run state machine
+      runtime.ts     the single running game: simulation + stepper + commands
+      core/          seeded rng, math helpers
+      loop/          fixed-timestep update, speed curve, simulation, run phases
       track/         lanes, chunk definitions, generator, object pools
       player/        controller, input buffer, animation state
       obstacles/     types, collision boxes
@@ -44,7 +46,7 @@ ananse-run/
       chaser/
       camera/        follow cam, shake, transitions
       fx/            particles, trails, post-processing
-    scenes/          World, MenuScene, RunScene (shared world)
+    scenes/          World, RunScene, run/ (driver, camera rig, instanced views)
     ui/              screens/, components/, hud/, transitions/
     store/           gameStore, profileStore, settingsStore
     services/        save (local + cloud), auth, leaderboard, audio

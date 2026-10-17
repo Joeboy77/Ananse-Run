@@ -1,0 +1,35 @@
+.button {
+  min-height: var(--tap-min);
+  min-width: 200px;
+  padding: var(--space-3) var(--space-8);
+  border: 0;
+  border-radius: var(--radius-lg);
+  font: 800 20px/1 var(--font-display);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    filter var(--duration-fast) var(--ease-out);
+}
+
+.button[data-variant='primary'] {
+  background: var(--color-gold);
+  color: var(--color-ink);
+  box-shadow: 0 6px 0 var(--color-gold-deep);
+}
+
+.button[data-variant='ghost'] {
+  background: rgb(255 255 255 / 0.12);
+  color: var(--color-paper);
+}
+
+.button:active {
+  transform: translateY(3px) scale(0.98);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-paper);
+  outline-offset: 3px;
+}

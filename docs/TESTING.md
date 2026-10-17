@@ -8,6 +8,7 @@ On your computer:
 2. First time only: `npm install`.
 3. Run `npm run dev` and open http://localhost:5173 in Chrome.
 4. Add `?debug=1` to the address to show the performance panel.
+5. To replay the exact same track (useful when reporting a problem), add `?seed=123` (any number). Both can be combined: `?debug=1&seed=123`.
 
 On your phone (most important):
 
@@ -58,6 +59,8 @@ Say which device and browser, what you did just before the problem, and whether 
 - With `?debug=1`, the panel shows FPS near 60 on both.
 
 ## Checkpoint A: game feel (after Phase 1)
+
+Greybox colour key: **red** = jump over, **blue** (floating) = slide under, **dark** = change lane, **green** = a roof you can jump onto and run along. Gold diamonds are the gold dust.
 
 Play at least 10 runs on the phone and 5 on the computer. Rate each line 1 to 5 and comment on anything below 4.
 
