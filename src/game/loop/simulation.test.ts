@@ -265,7 +265,7 @@ describe('run simulation', () => {
       lane: 0,
       x: -tuning.moving.crossingStartX,
       z: -60,
-      depth: 1.4,
+      depth: tuning.moving.okadaDepth,
       top: 1.6,
       vx: tuning.moving.crossingSpeed,
     })
@@ -361,5 +361,21 @@ describe('run simulation', () => {
     expect(stats.score).toBe(sim.score)
     expect(stats.gold).toBe(sim.gold)
     expect(stats.distance).toBe(Math.floor(sim.distance))
+  })
+
+  it('hits a crossing okada across its full length', () => {
+    const sim = isolated()
+    place(sim, {
+      kind: 'full',
+      motion: 'crossing',
+      visual: 'okada',
+      lane: 1,
+      x: (tuning.moving.okadaLength + tuning.player.halfWidth * 2) / 2 - 0.05,
+      z: -3,
+      depth: tuning.moving.okadaDepth,
+      top: tuning.moving.okadaHeight,
+    })
+    runFor(sim, 0.5)
+    expect(sim.phase).not.toBe('running')
   })
 })

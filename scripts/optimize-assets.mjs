@@ -1,4 +1,4 @@
-import { mkdir, readdir, stat } from 'node:fs/promises'
+import { mkdir, readdir, stat, writeFile } from 'node:fs/promises'
 import { dirname, extname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { NodeIO } from '@gltf-transform/core'
@@ -9,9 +9,11 @@ import sharp from 'sharp'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const [sourceArg, outputArg] = process.argv.slice(2)
+const indexFile = join(root, 'src', 'game', 'assetIndex.json')
 const sourceDir = sourceArg ?? join(root, 'assets-src')
 const outputDir = outputArg ?? join(root, 'public', 'assets')
-const TEXTURE_SIZE = 1024
+const CHARACTER_TEXTURE_SIZE = 1024
+const PROP_TEXTURE_SIZE = 512
 const CHARACTER_TRIANGLES = 15_000
 const PROP_TRIANGLES = 3_000
 const REQUIRED_CLIPS = [
@@ -67,9 +69,12 @@ const main = async () => {
   }
 
   let problems = 0
+  const produced = []
   for (const file of files) {
     const rel = relative(sourceDir, file)
 
+    const isCharacter = rel.startsWith('characters') && !rel.includes('extra_arms')
+    const textureSize = rel.startsWith('characters') ? CHARACTER_TEXTURE_SIZE : PROP_TEXTURE_SIZE
     const document = await io.read(file)
     const triangles = countTriangles(document)
     const clips = document
@@ -81,7 +86,7 @@ const main = async () => {
       dedup(),
       prune(),
       resample(),
-      textureCompress({ encoder: sharp, targetFormat: 'webp', resize: [TEXTURE_SIZE, TEXTURE_SIZE] }),
+      textureCompress({ encoder: sharp, targetFormat: 'webp', resize: [textureSize, textureSize] }),
       meshopt({ encoder: MeshoptEncoder, level: 'medium' }),
     )
 
@@ -90,9 +95,9 @@ const main = async () => {
     await io.write(target, document)
     const before = (await stat(file)).size
     const after = (await stat(target)).size
+    produced.push(`/assets/${relative(outputDir, target).split('\\').join('/')}`)
     console.log(`done  ${rel}  ${kb(before)} -> ${kb(after)}  ${triangles.toLocaleString()} triangles`)
 
-    const isCharacter = rel.startsWith('characters') && !rel.includes('extra_arms')
     const budget = isCharacter ? CHARACTER_TRIANGLES : PROP_TRIANGLES
     if (triangles > budget) {
       problems++
@@ -110,6 +115,7 @@ const main = async () => {
     }
   }
 
+  if (!sourceArg) await writeFile(indexFile, `${JSON.stringify(produced.sort(), null, 2)}\n`)
   console.log(problems === 0 ? '\nAll assets look good.' : `\n${problems} problem(s) to fix, see above.`)
 }
 

@@ -2,6 +2,14 @@
 
 Dated log of design and tech decisions. Newest at the top.
 
+## 2026-10-17 (Phase 4 props)
+
+- **Props are stretched to fit their collision box exactly**, so what you see is what you hit. Each obstacle gets a random-looking but fixed variant number to pick between props of the same type.
+- **`npm run assets` writes `src/game/assetIndex.json`**; the game only loads props listed there, so missing files never break loading.
+- **Prop textures 512 px** (characters 1024 px).
+- **Okada collision box turned sideways:** 1.8 long across the road, 0.8 deep, 1.6 tall. It faces its direction of travel.
+- **Vehicles:** oncoming trotros face the player; parked trotros show their back.
+
 ## 2026-10-17 (Phase 3 complete)
 
 - **Cartoon outline on Ananse:** a back-face "inverted hull" copy of each mesh, pushed out 1.4 cm along its normals in dark brown, works with skinning. Costs about 15% in the CPU-rendered test; it will be switched off on the Low quality tier.

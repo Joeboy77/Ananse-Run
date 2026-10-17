@@ -1,6 +1,7 @@
 import { tuning } from '@/config/tuning'
 import {
   createObstacle,
+  obstacleWidth,
   isWalkable,
   obstacleHeights,
   okadaHeights,
@@ -19,7 +20,6 @@ const { moving } = tuning
 const spawnHorizon = -chunkLength * chunksAlive
 const startOffset = 6
 const walkableTolerance = 0.4
-const halfObstacleWidth = tuning.obstacles.width / 2
 
 export interface Span {
   minX: number
@@ -36,6 +36,7 @@ export class Track {
   readonly pickups = new Pool<Pickup>(tuning.pools.pickups, createPickup)
   spawnCursor = startOffset
   scroll = 0
+  spawned = 0
 
   reset(): void {
     this.obstacles.releaseAll()
@@ -43,6 +44,7 @@ export class Track {
     this.pickups.releaseAll()
     this.spawnCursor = startOffset
     this.scroll = 0
+    this.spawned = 0
   }
 
   needsChunk(): boolean {
@@ -151,6 +153,7 @@ export class Track {
     obstacle.vz = 0
     obstacle.moving = false
     obstacle.passed = false
+    obstacle.variant = Math.imul(++this.spawned, 2654435761) >>> 16
 
     switch (piece.kind) {
       case 'oncoming':
@@ -196,9 +199,10 @@ export class Track {
 
 export const overlapsSpan = (obstacle: Obstacle, span: Span): boolean => {
   const halfDepth = obstacle.depth / 2
+  const halfWidth = obstacleWidth(obstacle) / 2
   return (
-    obstacle.x - halfObstacleWidth < span.maxX &&
-    obstacle.x + halfObstacleWidth > span.minX &&
+    obstacle.x - halfWidth < span.maxX &&
+    obstacle.x + halfWidth > span.minX &&
     obstacle.z - halfDepth < span.maxZ &&
     obstacle.z + halfDepth > span.minZ
   )

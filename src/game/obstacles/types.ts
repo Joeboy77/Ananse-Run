@@ -19,6 +19,7 @@ export interface Obstacle {
   vz: number
   moving: boolean
   passed: boolean
+  variant: number
   depth: number
   bottom: number
   top: number
@@ -35,6 +36,9 @@ export const obstacleHeights: Record<ObstacleKind, { bottom: number; top: number
 }
 
 export const okadaHeights = { bottom: 0, top: moving.okadaHeight }
+
+export const obstacleWidth = (obstacle: Pick<Obstacle, 'visual'>): number =>
+  obstacle.visual === 'okada' ? moving.okadaLength : obstacles.width
 
 export const isWalkable = (kind: ObstacleKind): boolean => kind === 'low' || kind === 'platform'
 
@@ -54,6 +58,7 @@ export const createObstacle = (): Obstacle => ({
   vz: 0,
   moving: false,
   passed: false,
+  variant: 0,
   depth: 1,
   bottom: 0,
   top: 1,

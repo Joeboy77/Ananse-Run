@@ -34,7 +34,7 @@ interface MaybeColored extends Material {
   map?: MeshToonMaterial['map']
 }
 
-const toToon = (source: Material): MeshToonMaterial => {
+export const toToon = (source: Material): MeshToonMaterial => {
   const material = source as MaybeColored
   const toon = new MeshToonMaterial({
     gradientMap: gradientMap(),

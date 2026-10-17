@@ -1,10 +1,12 @@
 import { useLayoutEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { BoxGeometry, Matrix4, Quaternion, Vector3, type BufferGeometry, type InstancedMesh } from 'three'
+import { BoxGeometry, Matrix4, type BufferGeometry, type InstancedMesh } from 'three'
 import { tuning } from '@/config/tuning'
 import type { ObstacleVisual } from '@/game/obstacles/types'
 import { game } from '@/game/runtime'
 import { createWedgeGeometry } from './geometries'
+import { composeObstacleMatrix } from './obstacleMatrix'
+import { readyVisuals } from './props/readyVisuals'
 
 const visuals: readonly ObstacleVisual[] = ['low', 'high', 'full', 'platform', 'ramp', 'trotro', 'okada']
 
@@ -19,9 +21,6 @@ const colors: Record<ObstacleVisual, string> = {
 }
 
 const matrix = new Matrix4()
-const position = new Vector3()
-const scale = new Vector3()
-const rotation = new Quaternion()
 const counts = Object.fromEntries(visuals.map((visual) => [visual, 0])) as Record<ObstacleVisual, number>
 
 export function ObstaclesView() {
@@ -43,14 +42,10 @@ export function ObstaclesView() {
     for (const visual of visuals) counts[visual] = 0
 
     for (const obstacle of game.sim.track.obstacles.items) {
-      if (!obstacle.active) continue
+      if (!obstacle.active || readyVisuals.has(obstacle.visual)) continue
       const mesh = meshes.current[obstacle.visual]
       if (!mesh) continue
-      const height = obstacle.top - obstacle.bottom
-      const width = obstacle.visual === 'okada' ? 1.1 : tuning.obstacles.width
-      position.set(obstacle.x, obstacle.bottom + height / 2, obstacle.z - lag)
-      scale.set(width, height, obstacle.depth)
-      matrix.compose(position, rotation, scale)
+      composeObstacleMatrix(obstacle, lag, matrix)
       mesh.setMatrixAt(counts[obstacle.visual]++, matrix)
     }
 

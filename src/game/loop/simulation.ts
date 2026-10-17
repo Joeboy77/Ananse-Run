@@ -3,7 +3,7 @@ import { POWER_UPS, type PowerUpId, type TimedPowerUpId } from '@/content/powerU
 import { Chaser } from '@/game/chaser/chaser'
 import { createRng, type Rng } from '@/game/core/rng'
 import { classifyHit, overlaps, type AxisOverlap, type Range } from '@/game/obstacles/collision'
-import { isSolid, type Obstacle } from '@/game/obstacles/types'
+import { isSolid, obstacleWidth, type Obstacle } from '@/game/obstacles/types'
 import type { PlayerAction } from '@/game/player/actions'
 import { InputBuffer } from '@/game/player/inputBuffer'
 import { Player } from '@/game/player/player'
@@ -373,7 +373,7 @@ export class RunSimulation {
     z: number,
     out: AxisOverlap,
   ): void {
-    const halfObstacle = tuning.obstacles.width / 2
+    const halfObstacle = obstacleWidth(obstacle) / 2
     const halfDepthObstacle = obstacle.depth / 2
     out.x = overlaps(box.x, { min: x - halfObstacle, max: x + halfObstacle })
     out.y = overlaps(box.y, { min: obstacle.bottom, max: obstacle.top })
@@ -490,6 +490,7 @@ export class RunSimulation {
     snap.rngState = this.rng.getState()
     snap.spawnCursor = this.track.spawnCursor
     snap.scroll = this.track.scroll
+    snap.spawned = this.track.spawned
     copyStrings(snap.recent, this.generator.recent)
     copyStrings(snap.missingWeights, this.missingWeights)
     copyStats(snap.stats, this.stats)
@@ -515,6 +516,7 @@ export class RunSimulation {
     this.rng.setState(snap.rngState)
     this.track.spawnCursor = snap.spawnCursor
     this.track.scroll = snap.scroll
+    this.track.spawned = snap.spawned
     copyStrings(this.generator.recent, snap.recent)
     copyStrings(this.missingWeights, snap.missingWeights)
     copyStats(this.stats, snap.stats)

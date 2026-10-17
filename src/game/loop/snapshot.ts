@@ -22,6 +22,7 @@ export class SimSnapshot {
   rngState = 0
   spawnCursor = 0
   scroll = 0
+  spawned = 0
   readonly recent: string[] = []
   readonly missingWeights: string[] = []
   readonly stats: RunStats = createRunStats()

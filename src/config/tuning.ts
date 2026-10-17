@@ -70,7 +70,8 @@ export const tuning = {
     crossingSpeed: 7,
     crossingStartX: 6,
     okadaHeight: 1.6,
-    okadaDepth: 1.4,
+    okadaDepth: 0.8,
+    okadaLength: 1.8,
   },
   ramp: {
     stepTolerance: 0.6,
