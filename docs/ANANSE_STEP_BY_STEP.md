@@ -66,22 +66,42 @@ We use **ChatGPT** to draw the concept. Its terms give you ownership of the imag
 
 ---
 
-## Part 3: Turn the concept into a 3D model (Step C)
+## Part 3: Turn the concept into a 3D model (Step C), about 20 minutes
 
-1. Go to **meshy.ai** → **Image to 3D** → upload `concept_front.png`.
-2. Settings, if offered:
-   - Style: **cartoon / stylised**.
-   - Topology: **triangle**. Target polycount: **about 10,000–15,000**.
-   - **Symmetry: on.** **T-pose / A-pose: on.**
-   - Texture: on.
-3. Generate. If the result looks wrong (missing hands, merged legs), generate again or try a cleaner front image.
-4. Download as **GLB**.
-5. **Licence:** check that your Meshy plan allows commercial use. Some free plans require a credit line. Write the source, your plan and the licence in `assets-src/LICENSES.md`.
-6. Save the download as `assets-src/characters/ananse/ananse_raw.glb`.
+Meshy turns your front image into a 3D model. Only `concept_front.png` is needed.
 
-(Tripo is a good alternative with the same steps.)
+**Make the model**
 
-**Check:** drag the GLB into **gltf-viewer.donmccurdy.com**. You see a coloured Ananse standing in a T-pose.
+1. Open **meshy.ai** in Chrome → **Sign up** (Google sign-in is quickest) → you land in the Meshy workspace.
+2. In the left menu click **Image to 3D**.
+3. Click the upload box and choose `assets-src/characters/ananse/concept_front.png`.
+4. Set the options in the panel (names can differ slightly; set whatever matches):
+   - **Topology:** Triangle
+   - **Target polycount:** 10,000 (anything from 8,000 to 15,000 is fine)
+   - **Symmetry:** On
+   - **Pose:** T-pose (if offered)
+   - **Texture / Generate texture:** On
+5. Click **Generate** and wait (a few minutes).
+6. When it finishes, click the result and rotate it with the mouse. Check:
+   - Both hands and both feet exist and are separate from the body.
+   - The legs are separate (not one block), even under the wrap.
+   - The face and wrap colours look like the concept.
+7. If a check fails, click **Generate** again (each try is different). Pick the best one.
+8. If the model has far more than 15,000 triangles and Meshy shows a **Remesh** button, use it: Triangle, 10,000.
+
+**Download it**
+
+9. With the chosen model open, click **Download** → format **GLB** → download. It goes to **Downloads**.
+10. In VS Code, right-click `assets-src/characters/ananse` → **Reveal in Finder**. Drag the downloaded `.glb` into that folder, then rename it to `ananse_raw.glb` (click name, Enter, type, Enter).
+
+**Licence**
+
+11. Open Meshy's **Pricing** page and read the licence line for your plan:
+    - If it says **private / commercial use**: great.
+    - If it says **CC BY 4.0**: also fine for the game; we must credit Meshy in the credits screen.
+    - Tell Claude Code which one it is so it can record it in `assets-src/LICENSES.md`.
+
+**Check:** go to **gltf-viewer.donmccurdy.com** and drag `ananse_raw.glb` onto the page. You see Ananse in colour, standing in a T-pose, and you can rotate around him.
 
 ---
 
