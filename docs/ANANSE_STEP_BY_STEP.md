@@ -107,6 +107,8 @@ Meshy turns your front image into a 3D model. Only `concept_front.png` is needed
 
 ## Part 4: Clean the model in Blender (Steps D and F)
 
+> **Meshy download shortcut:** if you downloaded with **Resize 180 cm** and **Origin Bottom**, the model is already one mesh, the right height, centred and facing forward. Only do steps 1, 2, 3 (to look at the triangle count) and 12 below, then go to Part 5.
+
 1. Open Blender. Press **A** to select everything in the starting scene, then **X → Delete** (removes the default cube, camera and light).
 2. **File → Import → glTF 2.0** → pick `ananse_raw.glb`.
 3. Turn on statistics: click the **Viewport Overlays** dropdown (top right of the 3D view, the two-circles icon) → tick **Statistics**. The triangle count appears at the top left.
