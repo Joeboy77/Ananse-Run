@@ -1,0 +1,42 @@
+.panel {
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + var(--space-2));
+  left: calc(env(safe-area-inset-left) + var(--space-2));
+  z-index: var(--z-debug);
+  display: grid;
+  gap: 2px;
+  min-width: 112px;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  background: rgb(0 0 0 / 0.72);
+  color: #fff;
+  font: 600 11px/1.2 var(--font-mono);
+  pointer-events: none;
+  user-select: none;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.label {
+  opacity: 0.6;
+}
+
+.value {
+  font-variant-numeric: tabular-nums;
+}
+
+.value[data-state='good'] {
+  color: #6ee787;
+}
+
+.value[data-state='warn'] {
+  color: #f2c94c;
+}
+
+.value[data-state='bad'] {
+  color: #ff6b6b;
+}

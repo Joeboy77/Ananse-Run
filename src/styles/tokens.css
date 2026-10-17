@@ -1,0 +1,37 @@
+:root {
+  --color-ink: #1b1209;
+  --color-paper: #fff8ec;
+  --color-gold: #f2b705;
+  --color-gold-deep: #c98a00;
+  --color-kente-green: #0f7b3e;
+  --color-kente-red: #c8102e;
+  --color-kente-blue: #1d3f8f;
+  --color-sky: #f6c27a;
+
+  --font-display: 'Trebuchet MS', system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+
+  --tap-min: 48px;
+
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+  --duration-slow: 400ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --z-canvas: 0;
+  --z-ui: 10;
+  --z-overlay: 20;
+  --z-debug: 100;
+}

@@ -1,0 +1,10 @@
+.app {
+  position: fixed;
+  inset: 0;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-canvas);
+}
