@@ -9,7 +9,7 @@ A web-only 3D endless runner rooted in Ashanti folklore. Ananse the trickster ru
 
 ## Current phase
 
-**Phase 3: Ananse comes alive, at TEST CHECKPOINT C1.** Real Ananse is in the game. See `docs/PROGRESS.md`.
+**Phase 4: Kejetia Market world.** Owner is making props from `docs/PROPS.md`. See `docs/PROGRESS.md`.
 
 ## Docs
 

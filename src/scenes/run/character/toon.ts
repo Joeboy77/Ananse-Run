@@ -1,6 +1,9 @@
 import {
+  BackSide,
   DataTexture,
   Mesh,
+  MeshBasicMaterial,
+  Vector3,
   MeshToonMaterial,
   NearestFilter,
   RedFormat,
@@ -52,4 +55,45 @@ export const toonify = (root: Object3D): void => {
       ? object.material.map((material: Material) => toToon(material))
       : toToon(object.material as Material)
   })
+}
+
+const OUTLINE_SHADER = `
+#ifdef USE_SKINNING
+  transformed += normalize(objectNormal) * outlineThickness;
+#else
+  transformed += normalize(normal) * outlineThickness;
+#endif
+`
+
+const createOutlineMaterial = (color: string, thickness: number): MeshBasicMaterial => {
+  const material = new MeshBasicMaterial({ color, side: BackSide })
+  material.onBeforeCompile = (shader) => {
+    shader.uniforms.outlineThickness = { value: thickness }
+    shader.vertexShader = `uniform float outlineThickness;\n${shader.vertexShader}`.replace(
+      '#include <skinning_vertex>',
+      `#include <skinning_vertex>\n${OUTLINE_SHADER}`,
+    )
+  }
+  material.customProgramCacheKey = () => `outline-${thickness.toFixed(5)}`
+  return material
+}
+
+const worldScale = new Vector3()
+
+export const addOutlines = (root: Object3D, color: string, worldThickness: number): void => {
+  root.updateMatrixWorld(true)
+  const meshes: Mesh[] = []
+  root.traverse((object) => {
+    if (object instanceof Mesh && !object.userData.outline) meshes.push(object)
+  })
+  for (const mesh of meshes) {
+    mesh.getWorldScale(worldScale)
+    const thickness = worldThickness / Math.max(worldScale.x, 1e-6)
+    const outline = mesh.clone() as Mesh
+    outline.material = createOutlineMaterial(color, thickness)
+    outline.userData.outline = true
+    outline.frustumCulled = false
+    outline.castShadow = false
+    mesh.parent?.add(outline)
+  }
 }

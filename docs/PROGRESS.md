@@ -52,11 +52,20 @@
 - [x] OWNER TASK 2: Mixamo rig and 11 animations
 - [x] Blender scripts: `prepare_character.py` (extra arms + Mixamo FBX), `combine_animations.py` (one GLB, in-place, textures)
 - [x] Ananse added to the asset manifest (931 KB, 10,379 triangles, 11 clips)
-- [ ] Toon outline decision (after seeing the real model)
-- [ ] TEST CHECKPOINT C1
+- [x] Toon outline: dark inverted-hull outline on Ananse and the extra arms (`?debug=1&outline=0` to compare)
+- [x] TEST CHECKPOINT C1 (approved 2026-10-17)
 
 ## Phase 4: Kejetia Market
 
+- [x] Prop list with prompts and triangle budgets (`docs/PROPS.md`)
+- [ ] OWNER TASK 3: Batch 1 obstacles (10 props)
+- [ ] OWNER TASK 3: Batch 2 scenery (7 props)
+- [ ] Prop loader that fits each model to its collision box, greybox fallback
+- [ ] Environment: road, gutters, stalls, buildings, sky backdrop
+- [ ] Golden-hour lighting, fog, fake shadows
+- [ ] Osebo the leopard chaser
+- [ ] Particles: gold sparkle, slide dust, web strands
+- [ ] Graphics quality tiers and auto benchmark (outline off on Low)
 - [ ] TEST CHECKPOINT C2
 
 ## Phase 5: UI/UX

@@ -2,6 +2,11 @@
 
 Dated log of design and tech decisions. Newest at the top.
 
+## 2026-10-17 (Phase 3 complete)
+
+- **Cartoon outline on Ananse:** a back-face "inverted hull" copy of each mesh, pushed out 1.4 cm along its normals in dark brown, works with skinning. Costs about 15% in the CPU-rendered test; it will be switched off on the Low quality tier.
+- **Props pipeline (Phase 4):** ChatGPT image → Meshy → GLB, no Blender. The game will fit each prop to its collision box.
+
 ## 2026-10-17 (Ananse model)
 
 - **Ananse base model:** Meshy Image to 3D (Meshy 7.1) from the ChatGPT concept, Meshy Pro private licence. 10,379 triangles, one mesh, 1.8 m, faces forward.

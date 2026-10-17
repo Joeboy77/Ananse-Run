@@ -13,5 +13,10 @@ export const graphics = {
     armsTuckedScale: 0.85,
     armsReachAngle: -1.1,
     armsLambda: 8,
+    outline: {
+      enabled: true,
+      color: '#1b1209',
+      thickness: 0.014,
+    },
   },
 } as const

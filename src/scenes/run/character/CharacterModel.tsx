@@ -18,10 +18,13 @@ import type { CharacterAsset } from '@/game/assets'
 import { damp } from '@/game/core/math'
 import { clipFor, LOOPING_CLIPS, resolveClip, type ClipName } from '@/game/player/animationState'
 import { game } from '@/game/runtime'
-import { toonify } from './toon'
+import { isDebug } from '@/debug/isDebug'
+import { addOutlines, toonify } from './toon'
 
 const CHEST_BONE = /spine2|upperchest|chest/i
 const c = graphics.character
+const outlineEnabled =
+  c.outline.enabled && !(isDebug() && new URLSearchParams(window.location.search).get('outline') === '0')
 
 const prepareScene = (source: Object3D): Object3D => {
   const scene = clone(source)
@@ -41,6 +44,7 @@ const prepareScene = (source: Object3D): Object3D => {
     scene.position.y = -bounds.min.y * scale
   }
   scene.updateMatrixWorld(true)
+  if (outlineEnabled) addOutlines(scene, c.outline.color, c.outline.thickness)
   return scene
 }
 
@@ -63,6 +67,7 @@ function ExtraArms({ url, scene }: { url: string; scene: Object3D }) {
     arms.position.copy(scene.position)
     scene.parent?.add(arms)
     arms.updateMatrixWorld(true)
+    if (outlineEnabled) addOutlines(arms, c.outline.color, c.outline.thickness)
     const bone = findChestBone(scene)
     const anchor = bone ?? scene
     anchor.add(pivot)
