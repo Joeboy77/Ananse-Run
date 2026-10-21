@@ -7,6 +7,8 @@ Dated log of design and tech decisions. Newest at the top.
 - **Props are stretched to fit their collision box exactly**, so what you see is what you hit. Each obstacle gets a random-looking but fixed variant number to pick between props of the same type.
 - **`npm run assets` writes `src/game/assetIndex.json`**; the game only loads props listed there, so missing files never break loading.
 - **Prop textures 512 px** (characters 1024 px).
+- **Prop triangle limit 3,300** (the brief's 3,000 plus 10%), because Meshy overshoots the requested Poly Count slightly.
+- **`npm run assets` skips models without textures**, so grey Meshy downloads never reach the game.
 - **Okada collision box turned sideways:** 1.8 long across the road, 0.8 deep, 1.6 tall. It faces its direction of travel.
 - **Vehicles:** oncoming trotros face the player; parked trotros show their back.
 

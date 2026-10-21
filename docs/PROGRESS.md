@@ -58,7 +58,7 @@
 ## Phase 4: Kejetia Market
 
 - [x] Prop list with prompts and triangle budgets (`docs/PROPS.md`)
-- [ ] OWNER TASK 3: Batch 1 obstacles (10 props) — 1/10 (crates)
+- [ ] OWNER TASK 3: Batch 1 obstacles (10 props) — 2/10 textured (crates, sacks); 8 shapes approved, need textured downloads
 - [ ] OWNER TASK 3: Batch 2 scenery (7 props)
 - [x] Prop loader that fits each model to its collision box, greybox fallback, auto-detects available files
 - [ ] Environment: road, gutters, stalls, buildings, sky backdrop

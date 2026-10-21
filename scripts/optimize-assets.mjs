@@ -15,7 +15,7 @@ const outputDir = outputArg ?? join(root, 'public', 'assets')
 const CHARACTER_TEXTURE_SIZE = 1024
 const PROP_TEXTURE_SIZE = 512
 const CHARACTER_TRIANGLES = 15_000
-const PROP_TRIANGLES = 3_000
+const PROP_TRIANGLES = 3_300
 const REQUIRED_CLIPS = [
   'idle',
   'run',
@@ -76,6 +76,15 @@ const main = async () => {
     const isCharacter = rel.startsWith('characters') && !rel.includes('extra_arms')
     const textureSize = rel.startsWith('characters') ? CHARACTER_TEXTURE_SIZE : PROP_TEXTURE_SIZE
     const document = await io.read(file)
+    const untextured = document
+      .getRoot()
+      .listMeshes()
+      .some((mesh) => mesh.listPrimitives().some((primitive) => !primitive.getAttribute('TEXCOORD_0')))
+    if (untextured && document.getRoot().listTextures().length === 0) {
+      problems++
+      console.log(`skip  ${rel}  (no colours: download the textured version from Meshy)`)
+      continue
+    }
     const triangles = countTriangles(document)
     const clips = document
       .getRoot()
